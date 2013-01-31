@@ -78,6 +78,9 @@ caption = _caption;
 	return self;
 }
 
+- (void)dealloc {
+    
+}
 
 #pragma mark MWPhoto Protocol Methods
 

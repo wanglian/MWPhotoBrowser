@@ -1,0 +1,20 @@
+
+PODS:
+- MWPhotoBrowser (1.0.1.1):
+  - SDWebImage
+  - SVProgressHUD
+- SDWebImage (3.1):
+  - SDWebImage/Main (= 3.1)
+- SDWebImage/Main (3.1)
+- SVProgressHUD (0.9)
+
+DEPENDENCIES:
+- MWPhotoBrowser (~> 1.0.1.1)
+
+SPEC CHECKSUMS:
+  MWPhotoBrowser: 8f5a5106d9f6eeb237e14a8c4443558bf28faca2
+  SDWebImage: 9e70e5dd0c69d1a043180cd2c5e1d0cd1e4ebcd7
+  SDWebImage/Main: 9e70e5dd0c69d1a043180cd2c5e1d0cd1e4ebcd7
+  SVProgressHUD: 98935fbafaf0031df4a9cafca3c66eaf3da06967
+
+COCOAPODS: 0.16.1
