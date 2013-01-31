@@ -75,9 +75,9 @@
 - (void)performLayout;
 
 // Nav Bar Appearance
-//- (void)setNavBarAppearance:(BOOL)animated;
-//- (void)storePreviousNavBarAppearance;
-//- (void)restorePreviousNavBarAppearance:(BOOL)animated;
+- (void)setNavBarAppearance:(BOOL)animated;
+- (void)storePreviousNavBarAppearance;
+- (void)restorePreviousNavBarAppearance:(BOOL)animated;
 
 // Paging
 - (void)tilePages;
@@ -344,10 +344,10 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     }
     
     // Navigation bar appearance
-//    if (!_viewIsActive && [self.navigationController.viewControllers objectAtIndex:0] != self) {
-//        [self storePreviousNavBarAppearance];
-//    }
-//    [self setNavBarAppearance:animated];
+    if (!_viewIsActive && [self.navigationController.viewControllers objectAtIndex:0] != self) {
+        [self storePreviousNavBarAppearance];
+    }
+    [self setNavBarAppearance:animated];
     
     // Update UI
 	[self hideControlsAfterDelay];
@@ -364,7 +364,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         _viewIsActive = NO;
         
         // Bar state / appearance
-//        [self restorePreviousNavBarAppearance:animated];
+        [self restorePreviousNavBarAppearance:animated];
         
     }
     
@@ -390,41 +390,41 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 #pragma mark - Nav Bar Appearance
 
-//- (void)setNavBarAppearance:(BOOL)animated {
-//    self.navigationController.navigationBar.tintColor = nil;
-//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-//    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
-//        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-//        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
-//    }
-//}
-//
-//- (void)storePreviousNavBarAppearance {
-//    _didSavePreviousStateOfNavBar = YES;
-//    self.previousNavBarTintColor = self.navigationController.navigationBar.tintColor;
-//    _previousNavBarStyle = self.navigationController.navigationBar.barStyle;
-//    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
-//        self.navigationBarBackgroundImageDefault = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
-//        self.navigationBarBackgroundImageLandscapePhone = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsLandscapePhone];
-//    }
-//}
-//
-//- (void)restorePreviousNavBarAppearance:(BOOL)animated {
-//    if (_didSavePreviousStateOfNavBar) {
-//        self.navigationController.navigationBar.tintColor = _previousNavBarTintColor;
-//        self.navigationController.navigationBar.barStyle = _previousNavBarStyle;
-//        if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
-//            [self.navigationController.navigationBar setBackgroundImage:_navigationBarBackgroundImageDefault forBarMetrics:UIBarMetricsDefault];
-//            [self.navigationController.navigationBar setBackgroundImage:_navigationBarBackgroundImageLandscapePhone forBarMetrics:UIBarMetricsLandscapePhone];
-//        }
-//        // Restore back button if we need to
-//        if (_previousViewControllerBackButton) {
-//            UIViewController *previousViewController = [self.navigationController topViewController]; // We've disappeared so previous is now top
-//            previousViewController.navigationItem.backBarButtonItem = _previousViewControllerBackButton;
-//            self.previousViewControllerBackButton = nil;
-//        }
-//    }
-//}
+- (void)setNavBarAppearance:(BOOL)animated {
+    self.navigationController.navigationBar.tintColor = nil;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
+        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
+    }
+}
+
+- (void)storePreviousNavBarAppearance {
+    _didSavePreviousStateOfNavBar = YES;
+    self.previousNavBarTintColor = self.navigationController.navigationBar.tintColor;
+    _previousNavBarStyle = self.navigationController.navigationBar.barStyle;
+    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
+        self.navigationBarBackgroundImageDefault = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
+        self.navigationBarBackgroundImageLandscapePhone = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsLandscapePhone];
+    }
+}
+
+- (void)restorePreviousNavBarAppearance:(BOOL)animated {
+    if (_didSavePreviousStateOfNavBar) {
+        self.navigationController.navigationBar.tintColor = _previousNavBarTintColor;
+        self.navigationController.navigationBar.barStyle = _previousNavBarStyle;
+        if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
+            [self.navigationController.navigationBar setBackgroundImage:_navigationBarBackgroundImageDefault forBarMetrics:UIBarMetricsDefault];
+            [self.navigationController.navigationBar setBackgroundImage:_navigationBarBackgroundImageLandscapePhone forBarMetrics:UIBarMetricsLandscapePhone];
+        }
+        // Restore back button if we need to
+        if (_previousViewControllerBackButton) {
+            UIViewController *previousViewController = [self.navigationController topViewController]; // We've disappeared so previous is now top
+            previousViewController.navigationItem.backBarButtonItem = _previousViewControllerBackButton;
+            self.previousViewControllerBackButton = nil;
+        }
+    }
+}
 
 #pragma mark - Layout
 
