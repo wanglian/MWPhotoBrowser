@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "MWPhotoProtocol.h"
-#import "SDWebImageDecoder.h"
-#import "SDWebImageManager.h"
+#import <SDWebImage/SDWebImageDecoder.h>
+#import <SDWebImage/SDWebImageManager.h>
 
 // This class models a photo/image and it's caption
 // If you want to handle photos, caching, decompression
 // yourself then you can simply ensure your custom data model
 // conforms to MWPhotoProtocol
-@interface MWPhoto : NSObject <MWPhoto, SDWebImageManagerDelegate, SDWebImageDecoderDelegate>
+@interface MWPhoto : NSObject <MWPhoto>
 
 // Properties
-@property (nonatomic, retain) NSString *caption;
+@property (nonatomic, strong) NSString *caption;
 
 // Class
 + (MWPhoto *)photoWithImage:(UIImage *)image;
