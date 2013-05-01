@@ -16,5 +16,4 @@ Pod::Spec.new do |s|
 
   s.dependency 'SDWebImage'
   s.dependency 'SVProgressHUD'
-  s.dependency 'REActivityViewController'
 end
