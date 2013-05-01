@@ -969,35 +969,42 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 }
 
 - (void)actionButtonPressed:(id)sender {
-    if (_actionsSheet) {
-        // Dismiss
-        [_actionsSheet dismissWithClickedButtonIndex:_actionsSheet.cancelButtonIndex animated:YES];
+    if ([_delegate respondsToSelector:@selector(photoBrowser:actionButtonClicked:photoAtIndex:)]) {
+        [_delegate photoBrowser:self actionButtonClicked:sender photoAtIndex:_currentPageIndex];
     } else {
-        id <MWPhoto> photo = [self photoAtIndex:_currentPageIndex];
-        if ([self numberOfPhotos] > 0 && [photo underlyingImage]) {
-            
-            // Keep controls hidden
-            [self setControlsHidden:NO animated:YES permanent:YES];
-            
-            // Sheet
-            if ([MFMailComposeViewController canSendMail]) {
-                self.actionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                       cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil
-                                                       otherButtonTitles:NSLocalizedString(@"Save", nil), NSLocalizedString(@"Copy", nil), NSLocalizedString(@"Email", nil), nil];
-            } else {
-                self.actionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                       cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil
-                                                       otherButtonTitles:NSLocalizedString(@"Save", nil), NSLocalizedString(@"Copy", nil), nil];
+        if (_actionsSheet) {
+            // Dismiss
+            [_actionsSheet dismissWithClickedButtonIndex:_actionsSheet.cancelButtonIndex animated:YES];
+        } else {
+            id <MWPhoto> photo = [self photoAtIndex:_currentPageIndex];
+            if ([self numberOfPhotos] > 0 && [photo underlyingImage]) {
+                
+                // Keep controls hidden
+                [self setControlsHidden:NO animated:YES permanent:YES];
+                
+                // Sheet
+                if ([MFMailComposeViewController canSendMail]) {
+                    self.actionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
+                                                           cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil
+                                                           otherButtonTitles:NSLocalizedString(@"Save", nil), NSLocalizedString(@"Copy", nil), NSLocalizedString(@"Email", nil), nil];
+                } else {
+                    self.actionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
+                                                           cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil
+                                                           otherButtonTitles:NSLocalizedString(@"Save", nil), NSLocalizedString(@"Copy", nil), nil];
+                }
+                _actionsSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                    [_actionsSheet showFromBarButtonItem:sender animated:YES];
+                } else {
+                    [_actionsSheet showInView:self.view];
+                }
+                
             }
-            _actionsSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                [_actionsSheet showFromBarButtonItem:sender animated:YES];
-            } else {
-                [_actionsSheet showInView:self.view];
-            }
-            
         }
     }
+    
+    
+    
 }
 
 #pragma mark - Action Sheet Delegate
