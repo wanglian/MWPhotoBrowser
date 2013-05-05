@@ -515,7 +515,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if ([_delegate respondsToSelector:@selector(photoBrowser:didRotateFromInterfaceOrientation:duration:)]) {
+    if ([_delegate respondsToSelector:@selector(photoBrowser:didRotateFromInterfaceOrientation:)]) {
         [_delegate photoBrowser:self didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     }
 	_rotating = NO;
