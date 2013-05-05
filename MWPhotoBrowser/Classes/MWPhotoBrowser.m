@@ -261,20 +261,21 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         [_toolbar removeFromSuperview];
     }
     
-    // Toolbar items & navigation
-    UIBarButtonItem *fixedLeftSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
-    fixedLeftSpace.width = 32; // To balance action button
-    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    NSMutableArray *items = [[NSMutableArray alloc] init];
-    if (_displayActionButton) [items addObject:fixedLeftSpace];
-    [items addObject:flexSpace];
-    if (numberOfPhotos > 1) [items addObject:_previousButton];
-    [items addObject:flexSpace];
-    if (numberOfPhotos > 1) [items addObject:_nextButton];
-    [items addObject:flexSpace];
-    if (_displayActionButton) [items addObject:_actionButton];
-    [_toolbar setItems:items];
-	[self updateNavigation];
+//    // Toolbar items & navigation
+//    UIBarButtonItem *fixedLeftSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+//    fixedLeftSpace.width = 32; // To balance action button
+//    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//    NSMutableArray *items = [[NSMutableArray alloc] init];
+//    if (_displayActionButton) [items addObject:fixedLeftSpace];
+//    [items addObject:flexSpace];
+//    if (numberOfPhotos > 1) [items addObject:_previousButton];
+//    [items addObject:flexSpace];
+//    if (numberOfPhotos > 1) [items addObject:_nextButton];
+//    [items addObject:flexSpace];
+//    if (_displayActionButton) [items addObject:_actionButton];
+//    [_toolbar setItems:items];
+//	[self updateNavigation];
+    [self updateToolbar];
     
     // Navigation buttons
     if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
@@ -313,6 +314,26 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     [self tilePages];
     _performingLayout = NO;
     
+}
+
+- (void)updateToolbar
+{
+    NSUInteger numberOfPhotos = [self numberOfPhotos];
+    
+    // Toolbar items & navigation
+    UIBarButtonItem *fixedLeftSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    fixedLeftSpace.width = 32; // To balance action button
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    if (_displayActionButton) [items addObject:fixedLeftSpace];
+    [items addObject:flexSpace];
+    if (numberOfPhotos > 1) [items addObject:_previousButton];
+    [items addObject:flexSpace];
+    if (numberOfPhotos > 1) [items addObject:_nextButton];
+    [items addObject:flexSpace];
+    if (_displayActionButton) [items addObject:_actionButton];
+    [_toolbar setItems:items];
+	[self updateNavigation];
 }
 
 // Release any retained subviews of the main view.
