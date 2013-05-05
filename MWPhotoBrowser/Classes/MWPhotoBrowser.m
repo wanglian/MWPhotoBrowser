@@ -472,20 +472,16 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 #pragma mark - Rotation
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    if ([_delegate respondsToSelector:@selector(photoBrowser:shouldAutorotateToInterfaceOrientation:)]) {
-        return [_delegate photoBrowser:self shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
-    } else {
+    if([self autorotationDelegate]){
+        return [[self autorotationDelegate] shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    }
+    else{
         return YES;
     }
 }
 
 - (BOOL)shouldAutorotate
 {
-//    if ([_delegate respondsToSelector:@selector(photoBrowser:shouldAutorotateToInterfaceOrientation:)]) {
-//        return [_delegate photoBrowser:self shouldAutorotateToInterfaceOrientation:self.interfaceOrientation];
-//    } else {
-//        return YES;
-//    }
     if([self autorotationDelegate]){
         return [[self autorotationDelegate] shouldAutorotate];
     }
