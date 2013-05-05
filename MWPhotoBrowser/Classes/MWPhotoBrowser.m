@@ -481,9 +481,15 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 - (BOOL)shouldAutorotate
 {
-    if ([_delegate respondsToSelector:@selector(photoBrowser:shouldAutorotateToInterfaceOrientation:)]) {
-        return [_delegate photoBrowser:self shouldAutorotateToInterfaceOrientation:self.interfaceOrientation];
-    } else {
+//    if ([_delegate respondsToSelector:@selector(photoBrowser:shouldAutorotateToInterfaceOrientation:)]) {
+//        return [_delegate photoBrowser:self shouldAutorotateToInterfaceOrientation:self.interfaceOrientation];
+//    } else {
+//        return YES;
+//    }
+    if([self autorotationDelegate]){
+        return [[self autorotationDelegate] shouldAutorotate];
+    }
+    else{
         return YES;
     }
 }
