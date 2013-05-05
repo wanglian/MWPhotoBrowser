@@ -479,6 +479,15 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     }
 }
 
+- (BOOL)shouldAutorotate
+{
+    if ([_delegate respondsToSelector:@selector(photoBrowser:shouldAutorotateToInterfaceOrientation:)]) {
+        return [_delegate photoBrowser:self shouldAutorotateToInterfaceOrientation:self.interfaceOrientation];
+    } else {
+        return YES;
+    }
+}
+
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
     if ([_delegate respondsToSelector:@selector(photoBrowser:willRotateToInterfaceOrientation:duration:)]) {
