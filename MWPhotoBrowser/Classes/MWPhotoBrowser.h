@@ -27,6 +27,10 @@
 @optional
 - (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index;
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonClicked:(id)sender photoAtIndex:(NSUInteger)index;
+- (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
+
 @end
 
 // MWPhotoBrowser

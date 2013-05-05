@@ -472,11 +472,18 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 #pragma mark - Rotation
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return YES;
+    if ([_delegate respondsToSelector:@selector(photoBrowser:shouldAutorotateToInterfaceOrientation:)]) {
+        return [_delegate photoBrowser:self shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    } else {
+        return YES;
+    }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
+    if ([_delegate respondsToSelector:@selector(photoBrowser:willRotateToInterfaceOrientation:duration:)]) {
+        [_delegate photoBrowser:self willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    }
 	// Remember page index before rotation
 	_pageIndexBeforeRotation = _currentPageIndex;
 	_rotating = YES;
@@ -497,6 +504,9 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if ([_delegate respondsToSelector:@selector(photoBrowser:didRotateFromInterfaceOrientation:duration:)]) {
+        [_delegate photoBrowser:self didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    }
 	_rotating = NO;
 }
 
