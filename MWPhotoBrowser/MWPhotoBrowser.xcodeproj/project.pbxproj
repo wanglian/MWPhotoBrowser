@@ -265,6 +265,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MWPhotoBrowser-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+<<<<<<< HEAD
+=======
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+>>>>>>> kimar/master
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -337,6 +344,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MWPhotoBrowser-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+<<<<<<< HEAD
+=======
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+>>>>>>> kimar/master
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -351,6 +365,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MWPhotoBrowser-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+<<<<<<< HEAD
+=======
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+>>>>>>> kimar/master
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
